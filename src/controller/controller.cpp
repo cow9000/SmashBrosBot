@@ -20,6 +20,9 @@ Controller::Controller(){}
 
 
 
+
+
+
 //Sending controlls
 //https://wiki.dolphin-emu.org/index.php?title=Pipe_Input
 
@@ -35,9 +38,51 @@ void Controller::writeToPipe(ControllerCommands command, bool released){
 	}
 }
 
+void Controller::writeToPipe(StickCommands stickType){
+	if(stickType == StickCommands::MAIN){
+		//MAIN STICK
+		//echo 'SET MAIN X Y' > ~/my-dolphin-directory/pipe1
+	}else{
+		//echo 'SET C X Y' > ~/my-dolphin-directory/pipe1
+	}
+}
 
+//0 to 1 methods for STICK
+//MAIN STICK
+void Controller::setMainStick(double mainStickX, double mainStickY){
+	this->mainStickX = mainStickX;
+	this->mainStickY = mainStickY;
+	writeToPipe(StickCommands::MAIN);
+}
 
+void Controller::setMainStickX(double mainStickX){
+	this->mainStickX = mainStickX;
+	writeToPipe(StickCommands::MAIN);
+}
+void Controller::setMainStickY(double mainStickY){
+	this->mainStickY = mainStickY;
+	writeToPipe(StickCommands::MAIN);
 
+}
+
+//C STICK
+void Controller::setCStick(double cStickX, double cStickY){
+	this->cStickX = cStickX;
+	this->cStickY = cStickY;
+	writeToPipe(StickCommands::C);
+}
+
+void Controller::setCStickX(double cStickX){
+	this->cStickX = cStickX;
+	writeToPipe(StickCommands::C);
+}
+
+void Controller::setCStickY(double cStickY){
+	this->cStickY = cStickY;
+	writeToPipe(StickCommands::C);
+}
+
+//Press or release methods
 void Controller::sendControllerCommand(std::vector<ControllerCommands> commands){
 
 
