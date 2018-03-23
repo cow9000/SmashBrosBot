@@ -6,6 +6,8 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
+#include <vector>
+
 #include "ControllerCommands.hpp"
 
 class Controller{
@@ -13,10 +15,16 @@ class Controller{
 		static Controller* instance;
 		Controller();
 
+		std::vector<ControllerCommands> activeControllerCommands;
+
+		void writeToPipe(ControllerCommands command, bool released);
+
 	public:
 		static Controller* getInstance();
 
-		void sendControllerCommand(ControllerCommands command);
+		//List of controller commands, this will either add them to the list or remove them from the list.
+		void sendControllerCommand(std::vector<ControllerCommands> commands);
+
 };
 
 
