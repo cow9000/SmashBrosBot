@@ -2,14 +2,14 @@
 #define CONTROLLERCOMMANDS_HPP
 
 enum ControllerCommands{
-	A,B,X,Y,Z,START,
-	D_UP,D_DOWN,D_LEFT,D_RIGHT,
-	TRIGGER_L,TRIGGER_R,
+	A=0,B=1,X=2,Y=3,Z=4,START=5,
+	D_UP=6,D_DOWN=7,D_LEFT=8,D_RIGHT=9,
+	TRIGGER_L=10,TRIGGER_R=11,
 };
 
 enum StickCommands{
-	MAIN,
-	C
+	MAIN=12,
+	C=13
 };
 
 #endif //CONTROLLERCOMMANDS_HPP
