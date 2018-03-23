@@ -26,8 +26,12 @@ Controller::Controller(){}
 void Controller::writeToPipe(ControllerCommands command, bool released){
 	if(released){
 		//Write release command
+
+		//echo 'RELEASE A' > ~/my-dolphin-directory/pipe1
 	}else{
 		//Write press command
+
+		//echo 'PRESS A' > ~/my-dolphin-directory/pipe1
 	}
 }
 
@@ -59,7 +63,7 @@ void Controller::sendControllerCommand(std::vector<ControllerCommands> commands)
 		if(removeIndex > -1){
 			ControllerCommands command = activeControllerCommands.at(addingIndex);
 			writeToPipe(command, true);
-			activeControllerCommands.erase(activeControllerCommands.begin() + removeIndex)
+			activeControllerCommands.erase(activeControllerCommands.begin() + removeIndex);
 		}else{
 			//This means that the button has not been pressed down yet
 			ControllerCommands command = commands.at(addingIndex);

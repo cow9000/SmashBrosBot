@@ -9,4 +9,9 @@ enum ControllerCommands{
 	C_STICK_UP,C_STICK_DOWN,C_STICK_LEFT, C_STICK_RIGHT
 };
 
+enum StickCommands{
+	MAIN,
+	C_STICK
+};
+
 #endif //CONTROLLERCOMMANDS_HPP
