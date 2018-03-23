@@ -1,121 +1,52 @@
-#include "headers/Controller.hpp"
-
-//Singleton
-Controller* Controller::instance = 0;
-
-
-
-//Singleton pattern
 /**
-* Returns the singleton instance
-*/
-Controller * Controller::getInstance(){
-	if(instance == 0){
-		instance = new Controller();
-	}
-	return instance;
-}
+* Created by Derek Vawdrey, 2018
+* Copyright 2018
+**/
 
-Controller::Controller(){}
+#ifndef CONTROLLER_HPP
+#define CONTROLLER_HPP
 
+#include <vector>
+#include <iostream>
 
+#include "ControllerCommands.hpp"
 
+class Controller{
+	private:
+		static Controller* instance;
+		Controller();
 
+		std::vector<ControllerCommands> activeControllerCommands;
 
+		void writeToPipe(ControllerCommands command, bool released);
+		void writeToPipe(StickCommands stickType);
 
-//Sending controlls
-//https://wiki.dolphin-emu.org/index.php?title=Pipe_Input
+		double mainStickX;
+		double mainStickY;
 
-void Controller::writeToPipe(ControllerCommands command, bool released){
-	if(released){
-		//Write release command
-
-		//echo 'RELEASE A' > ~/my-dolphin-directory/pipe1
-	}else{
-		//Write press command
-
-		//echo 'PRESS A' > ~/my-dolphin-directory/pipe1
-	}
-}
-
-void Controller::writeToPipe(StickCommands stickType){
-	if(stickType == StickCommands::MAIN){
-		//MAIN STICK
-		//echo 'SET MAIN X Y' > ~/my-dolphin-directory/pipe1
-	}else{
-		//echo 'SET C X Y' > ~/my-dolphin-directory/pipe1
-	}
-}
-
-//0 to 1 methods for STICK
-//MAIN STICK
-void Controller::setMainStick(double mainStickX, double mainStickY){
-	this->mainStickX = mainStickX;
-	this->mainStickY = mainStickY;
-	writeToPipe(StickCommands::MAIN);
-}
-
-void Controller::setMainStickX(double mainStickX){
-	this->mainStickX = mainStickX;
-	writeToPipe(StickCommands::MAIN);
-}
-void Controller::setMainStickY(double mainStickY){
-	this->mainStickY = mainStickY;
-	writeToPipe(StickCommands::MAIN);
-
-}
-
-//C STICK
-void Controller::setCStick(double cStickX, double cStickY){
-	this->cStickX = cStickX;
-	this->cStickY = cStickY;
-	writeToPipe(StickCommands::C);
-}
-
-void Controller::setCStickX(double cStickX){
-	this->cStickX = cStickX;
-	writeToPipe(StickCommands::C);
-}
-
-void Controller::setCStickY(double cStickY){
-	this->cStickY = cStickY;
-	writeToPipe(StickCommands::C);
-}
-
-//Press or release methods
-void Controller::sendControllerCommand(std::vector<ControllerCommands> commands){
+		double cStickX;
+		double cStickY;
 
 
+	public:
+		static Controller* getInstance();
 
-	//Loop through the commands vector
-	for(int addingIndex = 0; addingIndex < commands.size(); addingIndex++){
+		//List of controller commands, this will either add them to the list or remove them from the list.
+		void sendControllerCommand(std::vector<ControllerCommands> commands);
 
-		//Index to remove command, -1 indicated no command to be removed
-		int removeIndex = -1;
+		void setMainStick(double mainStickX, double mainStickY);
+		void setMainStickX(double mainStickX);
+		void setMainStickY(double mainStickY);
 
-		for(int activeIndex = 0; activeIndex < activeControllerCommands.size(); activeIndex++){
+		void setCStick(double cStickX, double cStickY);
+		void setCStickX(double cStickX);
+		void setCStickY(double cStickY);
 
-			//If the command is found, store index of active command
-			if(commands.at(addingIndex) == activeControllerCommands.at(activeIndex)){
-				removeIndex = activeIndex;
-				break;
-			}
-		}
-
-
-
-		//If the button is already pressed down, release it.
-		if(removeIndex > -1){
-			ControllerCommands command = activeControllerCommands.at(addingIndex);
-			writeToPipe(command, true);
-			activeControllerCommands.erase(activeControllerCommands.begin() + removeIndex);
-		}else{
-			//This means that the button has not been pressed down yet
-			ControllerCommands command = commands.at(addingIndex);
-			activeControllerCommands.push_back(command);
-			writeToPipe(command, false);
-		}
+		double getMainStickX(){return mainStickX;}
+		double getMainStickY(){return mainStickY;}
+		double getCStickX(){return cStickX;}
+		double getCStickY(){return cStickY;}
+};
 
 
-	}
-}
+#endif //CONTROLLER_HPP

@@ -31,10 +31,12 @@ void Controller::writeToPipe(ControllerCommands command, bool released){
 		//Write release command
 
 		//echo 'RELEASE A' > ~/my-dolphin-directory/pipe1
+		std::cout << "RELASE " << command << std::endl;
 	}else{
 		//Write press command
 
 		//echo 'PRESS A' > ~/my-dolphin-directory/pipe1
+		std::cout << "PRESS " << command << std::endl;
 	}
 }
 
@@ -42,8 +44,10 @@ void Controller::writeToPipe(StickCommands stickType){
 	if(stickType == StickCommands::MAIN){
 		//MAIN STICK
 		//echo 'SET MAIN X Y' > ~/my-dolphin-directory/pipe1
+		std::cout << "SET MAIN " << getMainStickX() << " " << getMainStickY() << std::endl;
 	}else{
 		//echo 'SET C X Y' > ~/my-dolphin-directory/pipe1
+		std::cout << "SET C " << getCStickX() << " " << getCStickY() << std::endl;
 	}
 }
 
