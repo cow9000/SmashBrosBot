@@ -1,6 +1,11 @@
-#include "headers/controller.hpp"
+#include "headers/Controller.hpp"
 
 //Singleton
+Controller* Controller::instance = 0;
+
+
+
+//Singleton pattern
 Controller * Controller::getInstance(){
 	if(instance == 0){
 		instance = new Controller();

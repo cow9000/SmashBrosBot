@@ -6,14 +6,17 @@
 #ifndef CONTROLLER_HPP
 #define CONTROLLER_HPP
 
-Controller* Controller::instance = 0;
+#include "ControllerCommands.hpp"
 
 class Controller{
 	private:
 		static Controller* instance;
-		controller();
+		Controller();
+
 	public:
 		static Controller* getInstance();
+
+		void sendControllerCommand(ControllerCommands command);
 };
 
 
