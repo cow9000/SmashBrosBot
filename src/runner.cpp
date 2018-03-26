@@ -14,9 +14,6 @@ int main(){
 	commands.push_back(ControllerCommands::B);
 	commands.push_back(ControllerCommands::Z);
 
-	commands2.push_back(ControllerCommands::Z);
-	commands2.push_back(ControllerCommands::B);
-	commands2.push_back(ControllerCommands::A);
 
 
 	controller->sendControllerCommand(commands);
