@@ -54,16 +54,32 @@ void Controller::writeToPipe(StickCommands stickType){
 //0 to 1 methods for STICK
 //MAIN STICK
 void Controller::setMainStick(double mainStickX, double mainStickY){
+
+	if(mainStickX > 1) mainStickX = 1.0;
+	if(mainStickX < 0) mainStickX = 0.0;
+
+	if(mainStickY > 1) mainStickY = 1.0;
+	if(mainStickY < 0) mainStickY = 0.0;
+
 	this->mainStickX = mainStickX;
 	this->mainStickY = mainStickY;
 	writeToPipe(StickCommands::MAIN);
 }
 
 void Controller::setMainStickX(double mainStickX){
+
+
+	if(mainStickX > 1) mainStickX = 1.0;
+	if(mainStickX < 0) mainStickX = 0.0;
+
 	this->mainStickX = mainStickX;
 	writeToPipe(StickCommands::MAIN);
 }
 void Controller::setMainStickY(double mainStickY){
+
+	if(mainStickY > 1) mainStickY = 1.0;
+	if(mainStickY < 0) mainStickY = 0.0;
+
 	this->mainStickY = mainStickY;
 	writeToPipe(StickCommands::MAIN);
 
@@ -71,17 +87,30 @@ void Controller::setMainStickY(double mainStickY){
 
 //C STICK
 void Controller::setCStick(double cStickX, double cStickY){
+
+	if(cStickX > 1) cStickX = 1.0;
+	if(cStickX < 0) cStickX = 0.0;
+
+	if(cStickY > 1) cStickY = 1.0;
+	if(cStickY < 0) cStickY = 0.0;
+
 	this->cStickX = cStickX;
 	this->cStickY = cStickY;
 	writeToPipe(StickCommands::C);
 }
 
 void Controller::setCStickX(double cStickX){
+	if(cStickX > 1) cStickX = 1.0;
+	if(cStickX < 0) cStickX = 0.0;
+
 	this->cStickX = cStickX;
 	writeToPipe(StickCommands::C);
 }
 
 void Controller::setCStickY(double cStickY){
+	if(cStickY > 1) cStickY = 1.0;
+	if(cStickY < 0) cStickY = 0.0;
+
 	this->cStickY = cStickY;
 	writeToPipe(StickCommands::C);
 }

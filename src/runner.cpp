@@ -7,19 +7,20 @@ int main(){
 
 	Controller* controller = Controller::getInstance();
 
+	//EXAMPLE ON HOW TO SEND CONTROLLER COMMANDS
 	std::vector<ControllerCommands> commands;
-	std::vector<ControllerCommands> commands2;
-
 	commands.push_back(ControllerCommands::A);
 	commands.push_back(ControllerCommands::B);
 	commands.push_back(ControllerCommands::Z);
 
-
-
 	controller->sendControllerCommand(commands);
 
+	//SETTING MAIN STICK
 	controller->setMainStick(0.5,0.6);
-	controller->sendControllerCommand(commands2);
+
+	//SETTING C-STICK
+	controller->setCStick(0.1,0.4);
+
 
 	return 0;
 
