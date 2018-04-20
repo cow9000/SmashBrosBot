@@ -133,6 +133,7 @@ void Controller::sendControllerCommand(std::vector<ControllerCommands> commands)
 		}
 
 		//If the button is already pressed down, release it.
+	
 		if(removeIndex >= 0){
 			ControllerCommands command = activeControllerCommands.at(removeIndex);
 			writeToPipe(command, true);

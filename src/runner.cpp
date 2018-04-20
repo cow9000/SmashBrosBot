@@ -1,11 +1,14 @@
 #include "Controller/Headers/Controller.hpp"
 #include "Controller/Headers/ControllerCommands.hpp"
+#include "NeuralNetwork/Headers/NeuralController.hpp"
+
 
 #include <vector>
 
 int main(){
 
 	Controller* controller = Controller::getInstance();
+	NeuralController* neuralController = NeuralController::getInstance();
 
 	//EXAMPLE ON HOW TO SEND CONTROLLER COMMANDS
 	std::vector<ControllerCommands> commands;
